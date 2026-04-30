@@ -36,17 +36,85 @@ int main() {
 
     // posicionando o navio na horizontal
 
+    int hzn = 1;
+
     for (int j = 2; j <= 4; j++) {
-        tabuleiro[2][j] = 3;
+        if (tabuleiro[2][j] != 0) {
+            hzn = 0;
+            break;
+            }
+        }
+
+    if (hzn) {
+        for (int j = 2; j <= 4; j++) {
+            tabuleiro[2][j] = 3;
+            }
+    } else {
+        printf("Sobrepondo navio existente!!\n");
     }
  
 
     // Posicionando navio na vertical
-
-    for (int i = 2; i <=4; i++){
-        tabuleiro[i][6] = 3;
+    int vrt = 1;
+    for (int i = 2; i <5; i++){
+        if (tabuleiro[i][6] != 0){
+            vrt = 0;
+            break;
+        }
     }
 
+    if (vrt){
+        for (int i = 2; i <5; i++){
+            tabuleiro[i][6] = 3;
+        }
+    } else {
+        printf("Sobrepondo navio existente!!\n");
+    }
+
+   
+
+    //Teste de navio na diagonal
+
+    int dgn1 = 1;
+
+    for (int i = 5, j = 5; i < 8 && j < 8; i++, j++) {
+        if (tabuleiro[i][j] != 0) {
+            dgn1 = 0;
+            break;
+        }
+    }
+    
+    if (dgn1){
+        for (int i =5 , j = 5; i < 8 && j < 8; i++, j++){
+            if (tabuleiro[i][j] == 0){
+            tabuleiro[i][j] = 3;
+            } 
+        }
+    }else {
+            printf("Sobrepondo navio existente!!\n");
+        
+    }
+
+    //segundo navio na diagonal
+    int dgn2 = 1;
+    for (int i = 4, j = 3; i < 7 && j >= 0; i++, j++){
+        if (tabuleiro[i][j] != 0){
+            dgn2 = 0;
+            break;
+        }
+        
+        
+    }
+    if (dgn2){
+        for (int i = 4, j = 3; i < 7 && j >= 0; i++, j--) {
+            if (tabuleiro[i][j] == 0){
+                 tabuleiro[i][j] = 3;
+            }
+        }
+    } else {
+        printf("Sobrepondo navio existente!!\n");
+    }
+    
 
     // Imprimindo Tabuleiro
 
@@ -60,31 +128,7 @@ int main() {
         printf("\n");
     }
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
 
     return 0;
 }
