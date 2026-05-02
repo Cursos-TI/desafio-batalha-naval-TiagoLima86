@@ -16,6 +16,8 @@ int main() {
     int tabuleiro [10][10];
     char *cabecalho[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 
+    int tabuleiro2 [10][10];
+
 
 
     //Imprimindo cabeçalho
@@ -122,13 +124,96 @@ int main() {
         printf("%d ", i + 1); // número da linha
 
         for (int j = 0; j < horizontal; j++) {
-            printf("%d ", tabuleiro[i][j]);
+            printf("%2d", tabuleiro[i][j]);
         }
 
         printf("\n");
     }
+    // Tabulheiro de habilidades
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("TABULEIRO DE HABILIDADES");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+
+    //Iniciando com 0
+    for (int i = 0; i < 10; i++){
+        for (int j = 0; j < 10; j++){
+            tabuleiro2[i][j] = 0;
+        }
+    }
+
+    //Colocando o  triângulo
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+
+            
+            if (i >= 5 && i <= 7 && j >= (3 - (i - 5)) && j <= (3 + (i - 5))) {
+                tabuleiro2[i][j] = 1;
+            } else {
+                tabuleiro2[i][j] = 0;
+            }
+        }
+    }
+
+    //Colocando a Cruz
+    for (int i = 0; i <10; i++){
+        for (int j = 0; j < 10; j++){
+            if ((j == 3 && i >= 0 && i <= 4) ||   // coluna vertical
+                (i == 2 && j >= 1 && j <= 5)      // barra horizontal
+                ) {
+                tabuleiro2[i][j] = 3;
+                }
+
+        }
+    }
+
+    //Colocando o octaedro
+
+    for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+
+        // parte de baixo (sua)
+        if ((i == 5 && j >= 5 && j <= 9) ||
+            (i == 6 && j >= 6 && j <= 8) ||
+            (i == 7 && j == 7)) {
+
+            tabuleiro2[i][j] = 2;
+        }
+
+        // parte de cima (completa o losango)
+        else if ((i == 4 && j >= 6 && j <= 8) || (i == 3 && j == 7)) {
+            tabuleiro2[i][j] = 2;
+        }
 
 
+
+    }
+}
+
+
+    
+   
+
+
+    printf("   ");
+    for (int i = 0; i < 10; i++){
+        printf("%s ", cabecalho[i]);
+        
+    }
+    printf("\n");
+
+    for (int i = 0; i < vertical; i++) {
+        printf("%d ", i + 1); // número da linha
+
+        for (int j = 0; j < horizontal; j++) {
+            printf("%2d", tabuleiro2[i][j]);
+        }
+
+        printf("\n");
+    }
 
     return 0;
 }
